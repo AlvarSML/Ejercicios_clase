@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<math.h>
 
-/* RODIGO PENDEJO */
+/* RODRIGO PENDEJO */
 
 void leerCoeficientes(float *a, float *b, float *c);
 void calculaSoluciones(int,float,float,float);
