@@ -35,7 +35,13 @@ int main() {
   printf("Introduce k: ");
   int k = leeEntero();
 
-  calculaResultado(a,b,n,k);
+  if (k > 0 && k <= n) { 
+    calculaResultado(a,b,n,k);
+  } else if (k < 0) {
+    printf("k no puede ser menor que 0\n");
+  } else {
+    printf("k no puede ser mayor que n\n");
+  }
   return 0;
 }
 
