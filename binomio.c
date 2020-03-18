@@ -73,8 +73,8 @@ long binomial(unsigned n,unsigned k){
 }
 
 /**
-* Calcula el termino n
-* @param a
+* Calcula el termino k de (ax+by)^n
+* @param a 
 * @param b
 * @param n
 * @param k
