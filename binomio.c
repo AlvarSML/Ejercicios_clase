@@ -84,7 +84,7 @@ void calculaResultado(int a, int b, unsigned n, unsigned k) {
   if (b > 0) {
     termino = binomial(n,k-1) * pow(a,n-(k-1)) * pow(b,k-1);
   } else if (b < 0) {
-    termino = pow(-1,k-1) * pow(a,n-(k-1)) * pow(b,k-1);
+    termino = pow(-1,k-1) * binomial(n,k-1) * pow(a,n-(k-1)) * pow(b,k-1);
   }
   printf("%li\n",termino);
 }
