@@ -1,4 +1,7 @@
 /* Directivas del preprocesador */
+#define SALIR 0
+#define CONTINUAR 1
+
 #include <stdio.h>
 #include <math.h>
 
@@ -8,22 +11,31 @@ int calculaCentro(int);
 int sumaAnteriores(int);
 void mostrarCentro(int);
 int calcularPosteriores(int, int);
-
+int ultimo(int, int);
 void mostrarNumerosHasta(int, int);
 void mostrarNumeros(int, int);
 
 int main() {
 
-  int n;
+  int n, menu = CONTINUAR;
+  char cont;
 
-  printf("Introduce un entero (1-5000): ");
-  n = leeEntero();
-  //printf("%i\n",calculaCentro(n));
-  //printf("%i\n",sumaAnteriores(n-1));
-  //printf("%i\n",sumaAnteriores(n-1));
-  //printf("%f",sqrt((n*n+n)/2));
-  //mostrarNumeros(1,5);
-  calcularCentros(n);
+  do {
+    printf("Introduce un entero(1-5000): ");
+    n = leeEntero();
+    if (n < 1 || n > 5000 ) {
+      printf("Introduce un numero valido (INTRO para continuar)\n");
+      //El primero captura el enter de la entrada anterior
+      getchar();
+      getchar();
+    } else {
+      calcularCentros(n);
+      printf("Ejecucion terminada introduce n para salir o cualquier otra tecla para continuar: " );
+      getchar();
+      cont = getchar();
+      menu = (cont == 'n')?SALIR:CONTINUAR; 
+    }    
+  } while (menu != SALIR);
   return 0;
 }
 
@@ -58,11 +70,7 @@ void calcularCentros(int n) {
 * @return suma de los numeros anteriores a n
 */
 int sumaAnteriores(int n){
-  if (n == 1) {
-    return 1;
-  } else {
-    return n + sumaAnteriores(n-1);
-  }
+  return ((n * (n+1)) /2);
 }
 
 /*
@@ -82,11 +90,22 @@ int calculaCentro(int n) {
 * @return el nucleo si lo hay o 0 (FALSE)
 */
 void mostrarCentro(int n) {
+  int ult = ultimo(n, sumaAnteriores(n));
+
   printf("El centro %i y sus grupos son: \n",n);
-  printf("\t-Izquierda: ");
-  mostrarNumeros(1,n);
-  printf("\t-Derecha: ");
-  mostrarNumerosHasta(n,sumaAnteriores(n));
+  if (n < 50) {
+    printf("\t-Izquierda: ");
+    mostrarNumeros(1,n);
+    printf("\t-Derecha: ");
+    mostrarNumerosHasta(n,sumaAnteriores(n));
+  } else {
+    printf("\t-Izquierda: ");
+    printf("1 2 ... %i %i\n", n -2, n-1);
+    printf("\t-Derecha: ");
+    printf("%i %i ... %i %i\n", n +1, n +2, ult -1, ult);
+  }
+  
+  
 }
 
 /*
@@ -137,4 +156,21 @@ int calcularPosteriores(int n, int max) {
   }
   
   return 0;
+}
+
+/*
+* Obtiene el ultimo numero de una serie desde n hasta que sumen m
+* @param n
+* @param m
+* @return el ultimo numero de la serie
+*/
+int ultimo(int n, int m) {
+  int acc = n;
+
+  while (acc < m) {
+    n++;
+    acc = acc + n;
+  }
+
+  return n;
 }
