@@ -1,3 +1,16 @@
+/*----------------------------------------------+
+|Nombre:   CentrosNumericos.c                   |
+|Sinopsis: Calcula los centros numericos desde  |
+| 1 hasta n                                     |
+|Directivas de compilación: compilador gcc      |
+|Lista de códigos de salida del programa:       |
+|  Devuelve 0.                                  |
+|Organización: Universidad de Burgos            |
+|Autor:   Alvar San Martin                      |
+|Fecha:   27/03/2020                            |
+|Versión: v1.0                                  |
++----------------------------------------------*/
+
 /* Directivas del preprocesador */
 #define SALIR 0
 #define CONTINUAR 1
@@ -5,6 +18,7 @@
 #include <stdio.h>
 #include <math.h>
 
+/* Definicion de funciones */
 int leeEntero();
 void calcularCentros(int);
 int calculaCentro(int);
@@ -15,6 +29,7 @@ int ultimo(int, int);
 void mostrarNumerosHasta(int, int);
 void mostrarNumeros(int, int);
 
+/* Definicion de funciones */
 int main() {
 
   int n, menu = CONTINUAR;
